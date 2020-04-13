@@ -1,0 +1,19 @@
+{%extends "styled_base.html"%}
+{%block title%}Welcome{%endblock%}
+{%block content%}
+    {%with messages = get_flashed_messages() %}
+        {%if messages%}
+            {%for line in messages%}
+                <p>{{line}}</p>
+            {%endfor%}
+        {%endif%}
+    {%endwith%}
+    {%if "LOGGED_USER" in session%}
+    <p>Hello {{session["LOGGED_USER"]}}</p>
+    {%endif%}
+    <br/>
+    <form action="#" method="POST">
+        <input type="email" name="mail" value={%if str_email%}{{str_email}}{%else%}"email address"{%endif%} />
+        <input type="submit" value="Submit my email" />
+    </form>
+{%endblock%}
